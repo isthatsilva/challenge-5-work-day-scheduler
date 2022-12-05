@@ -38,14 +38,25 @@ function background() {
     $('.form-control').each(function () {
         const timeTest = parseInt($(this).attr('id'));
         hour = parseInt(hour);
-        // console.log(timeTest);
         
-        if (hour > timeTest) {
+        if (timeTest < hour) {
+            $(this).removeClass('future');
+            $(this).removeClass('present');
             $(this).addClass('past');
-        } else if (hour < timeTest) {
+
+            $('.past').css('background-color', '#d3d3d3');
+        } else if (timeTest > hour) {
+            $(this).removeClass('past');
+            $(this).removeClass('present');
             $(this).addClass('future');
+
+            $('.future').css('background-color', '#77dd77');
         } else {
+            $(this).removeClass('past');
+            $(this).removeClass('future');
             $(this).addClass('present');
+
+            $('.present').css('background-color', '#ff6961');
         }
     });
 }
@@ -57,5 +68,7 @@ $(document).ready(function () {
     $('.savebtn').on('click', function () {
         userInput = $(this).siblings('.form-control').val().trim();
         console.log(userInput);
+        hourSpan = $(this).siblings('.input-group-prepend').val();
+        localStorage.setItem(hourSpan, JSON.stringify(userInput));
     })
-})
+});
