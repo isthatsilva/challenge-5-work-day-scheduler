@@ -66,9 +66,9 @@ $(document).ready(function () {
     background()
 
     $('.savebtn').on('click', function () {
-        userInput = $(this).siblings('.form-control').val().trim();
-        console.log(userInput);
-        hourSpan = $(this).siblings('.input-group-prepend').val();
-        localStorage.setItem(hourSpan, JSON.stringify(userInput));
+        text = $(this).siblings('.form-control').val().trim();
+        console.log(text);
+        hour = $(this).siblings('.input-group-prepend').val();
+        localStorage.setItem(hour, JSON.stringify(text));
     })
 });
